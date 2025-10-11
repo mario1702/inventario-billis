@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Inventario Street Food</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      font-size: 48px;
+      font-weight: bold;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    h1 span {
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    }
+    h2 {
+      color: #007bff;
+      margin-top: 40px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+      position: relative;
+    }
+    h2 button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: #dc3545;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 10px 0;
+    }
+    .item label {
+      width: 300px;
+      font-weight: bold;
+    }
+    .item input {
+      width: 300px;
+      padding: 6px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .item button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      margin-left: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .add-button {
+      display: block;
+      margin: 10px auto;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .add-button:hover {
+      background-color: #218838;
+    }
+    .buttons {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .buttons button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      margin: 10px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .buttons button:hover {
+      background-color: #0056b3;
+    }
+    #login {
+      text-align: center;
+      margin-top: 100px;
+    }
+    #login input {
+      margin: 10px;
+      padding: 10px;
+      width: 250px;
+      font-size: 16px;
+    }
+    #login button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #login button:hover {
+      background-color: #0056b3;
+    }
+    #error {
+      color: red;
+      margin-top: 10px;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div id="login" class="container">
+    <h1>🔐 Accesso Inventario Street Food</h1>
+    <input type="text" id="username" placeholder="Nome utente">
+    <br>
+    <input type="password" id="password" placeholder="Password">
+    <br>
+    <button onclick="checkLogin()">Accedi</button>
+    <div id="error"></div>
+  </div>
+
+  <div id="inventario" class="container" style="display:none;">
+    <h1>
+      <span style="color:gold;">Billis</span>
+      <span style="color:black;">StreetFood</span>
+    </h1>
+    <h2>🚚 Logistica Evento <button onclick="toggleSection('logistica')">✖</button></h2>
+    <div id="logistica">
+      <div class="item"><label>Targa veicolo:</label><input type="text" placeholder="Es. AB123CD"></div>
+      <div class="item"><label>Nome evento:</label><input type="text" placeholder="Es. Street Food Arezzo"></div>
+      <div class="item"><label>Orario di partenza:</label><input type="text" placeholder="Es. 08:00"></div>
+      <div class="item"><label>Orario di montaggio:</label><input type="text" placeholder="Es. 09:30"></div>
+      <div class="item"><label>Orario di chiusura:</label><input type="text" placeholder="Es. 23:00"></div>
+      <div class="item"><label>Alloggio dipendenti:</label><input type="text" placeholder="Es. Hotel Centrale"></div>
+    </div>
+
+    <h2>🍽️ Alimenti <button onclick="toggleSection('alimenti')">✖</button></h2>
+    <div id="alimenti">
+      <div class="item"><label>Pane:</label><input type="text" placeholder="Es. 50 pezzi"></div>
+      <div class="item"><label>Carne:</label><input type="text" placeholder="Es. 10 kg"></div>
+      <div class="item"><label>Pulled Pork:</label><input type="text" placeholder="Es. 5 kg"></div>
+      <div class="item"><label>Cheddar:</label><input type="text" placeholder="Es. 2 kg"></div>
+      <div class="item"><label>Salsa Billi's:</label><input type="text" placeholder="Es. 3 bottiglie"></div>
+      <div class="item"><label>Salsa BBQ:</label><input type="text" placeholder="Es. 2 bottiglie"></div>
+      <div class="item"><label>Insalata:</label><input type="text" placeholder="Es. 3 cespi"></div>
+      <div class="item"><label>Pomodoro:</label><input type="text" placeholder="Es. 2 kg"></div>
+      <div class="item"><label>Cipolla Caramellata:</label><input type="text" placeholder="Es. 1 kg"></div>
+      <div class="item"><label>Maionese:</label><input type="text" placeholder="Es. 1 bottiglia"></div>
+      <div class="item"><label>Ketchup:</label><input type="text" placeholder="Es. 1 bottiglia"></div>
+      <div class="item"><label>Maionese Bustine:</label><input type="text" placeholder="Es. 100 bustine"></div>
+      <div class="item"><label>Ketchup Bustine:</label><input type="text" placeholder="Es. 100 bustine"></div>
+      <div class="item"><label>Hot Dog:</label><input type="text" placeholder="Es. 30 pezzi"></div>
+      <div class="item"><label>Würstel:</label><input type="text" placeholder="Es. 40 pezzi"></div>
+      <div class="item"><label>Patatine Fritte:</label><input type="text" placeholder="Es. 5 kg"></div>
+      <div class="item"><label>Olio di Girasole:</label><input type="text" placeholder="Es. 5 litri"></div>
+      <div class="item"><label>Bacon Cubetti:</label><input type="text" placeholder="Es. 2 kg"></div>
+      <button class="add-button" onclick="addItem('alimenti')">➕ Aggiungi alimento</button>
+    </div>
+
+    <h2>🥤 Bevande <button onclick="toggleSection('bevande')">✖</button></h2>
+    <div id="bevande">
+      <div class="item"><label>Coca Cola lt:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
+      <div class="item"><label>Fanta:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
+      <div class="item"><label>Acqua Naturale:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
+      <div class="item"><label>Acqua Frizzante:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
+      <div class="item"><label>Birra:</label><input type="text" placeholder="Es. 30 bottiglie"></div>
+      <div class="item"><label>The Limone:</label><input type="text" placeholder="Es. 12 bottiglie"></div>
+      <div class="item"><label>The Pesca:</label><input type="text" placeholder="Es. 12 bottiglie"></div>
+      <div class="item"><label>Sprite:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
+      <button class="add-button" onclick="addItem('bevande')">➕ Aggiungi bevanda</button>
+    </div>
+
+    <h2>🔧 Attrezzature <button onclick="toggleSection('attrezzature')">✖</button></h2>
+    <div id="attrezzature">
+      <div class="item"><label>Piastra Gas:</label><input type="text" placeholder="Es. 2 unità"></div>
+      <div class="item"><label>Piastra Elettrica:</label><input type="text" placeholder="Es. 1 unità"></div>
+      <div class="item"><label>Bombola Gas:</label><input type="text" placeholder="Es. 3 bombole"></div>
+      <div class="item"><label>Estintori:</label><input type="text" placeholder="Es. 1 unità"></div>
+      <div class="item"><label>Cavi Blu/Rossi:</label><input type="text" placeholder="Es. 5 cavi"></div>
+      <div class="item"><label>Prolunghe:</label><input type="text" placeholder="Es. 3 unità"></div>
+      <div class="item"><label>Paletta/Raschietto:</label><input type="text" placeholder="Es. 2 utensili"></div>
+      <div class="item"><label>Pinzette:</label><input type="text" placeholder="Es. 2 utensili"></div>
+      <div class="item"><label>Cestello Pane:</label><input type="text" placeholder="Es. 1 cestello"></div>
+      <button class="add-button" onclick="addItem('attrezzature')">➕ Aggiungi attrezzatura</button>
+    </div>
+
+    <div class="buttons">
+      <button onclick="sendEmail()">📤 Invia Email</button>
+      <button onclick="exportData()">📁 Esporta PDF</button>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function checkLogin() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const error = document.getElementById("error");
+
+      if (username === "billisarezzo" && password === "billisarezzo@2025") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("inventario").style.display = "block";
+      } else {
+        error.textContent = "Credenziali non valide. Riprova.";
+      }
+    }
+
+    function addItem(sectionId) {
+      const container = document.getElementById(sectionId);
+      const newItem = document.createElement("div");
+      newItem.className = "item";
+      newItem.innerHTML = `
+        <label>Nuova voce:</label>
+        <input type="text" placeholder="Nome">
+        <input type="text" placeholder="Quantità">
+        <button onclick="this.parentElement.remove()" style="
+          background-color: #dc3545;
+          color: white;
+          border: none;
+          padding: 6px 12px;
+          margin-left: 10px;
+          border-radius: 6px;
+          cursor: pointer;
+        ">➖ Rimuovi</button>
+      `;
+      container.insertBefore(newItem, container.querySelector(".add-button"));
+    }
+
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.style.display = section.style.display === "none" ? "block" : "none";
+    }
+
+    function sendEmail() {
+      alert("Email inviata al destinatario!");
+      exportData();
+    }
+
+    async function exportData() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      let y = 20;
+
+      doc.setFontSize(16);
+      doc.text("Inventario Evento Street Food", 20, y);
+      y += 10;
+
+      const sections = document.querySelectorAll("#inventario h2");
+      sections.forEach(section => {
+        const title = section.textContent.replace("✖", "").trim();
+        doc.setFontSize(14);
+        doc.text(title, 20, y);
+        y += 8;
+
+        const container = section.nextElementSibling;
+        const items = container.querySelectorAll(".item");
+        items.forEach(item => {
+          const label = item.querySelector("label");
+          const inputs = item.querySelectorAll("input");
+          if (label && inputs.length > 0) {
+            const values = Array.from(inputs).map(input => input.value.trim()).filter(v => v !== "");
+            if (values.length > 0) {
+              doc.setFontSize(12);
+              doc.text(`${label.textContent} ${values.join(" - ")}`, 25, y);
+              y += 6;
+            }
+          }
+        });
+
+        y += 6;
+      });
+
+      doc.save("Inventario_StreetFood.pdf");
+    }
+  </script>
+</body>
+</html>

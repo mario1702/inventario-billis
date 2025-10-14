@@ -5,128 +5,174 @@
   <title>Inventario Street Food</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      font-family: 'Poppins', sans-serif;
+      background-color: #111;
+      color: #222;
       margin: 0;
       padding: 20px;
     }
+
     .container {
       max-width: 900px;
       margin: auto;
-      background-color: #fff;
+      background-color: #fffbea;
       padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 14px;
+      box-shadow: 0 0 20px rgba(255, 208, 0, 0.4);
+      animation: fadeIn 1.5s ease-in-out;
     }
+
     h1 {
       text-align: center;
       font-size: 48px;
-      font-weight: bold;
-      animation: fadeIn 1.5s ease-in-out;
+      font-weight: 900;
+      color: #222;
+      text-transform: uppercase;
     }
-    h1 span {
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+
+    h1 span:first-child {
+      color: #FFD700;
     }
+
+    h1 span:last-child {
+      color: #000;
+    }
+
     h2 {
-      color: #007bff;
+      color: #000;
+      background-color: #FFD700;
+      padding: 10px 15px;
+      border-radius: 8px;
       margin-top: 40px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 5px;
       position: relative;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
+
     h2 button {
-      position: absolute;
-      right: 0;
-      top: 0;
       background: none;
       border: none;
-      font-size: 20px;
+      font-size: 22px;
       cursor: pointer;
-      color: #dc3545;
+      color: #222;
+      transition: transform 0.2s;
     }
+
+    h2 button:hover {
+      transform: scale(1.2);
+    }
+
     .item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 10px 0;
+      margin: 12px 0;
+      flex-wrap: wrap;
     }
+
     .item label {
       width: 300px;
-      font-weight: bold;
+      font-weight: 600;
+      color: #111;
     }
-    .item input {
+
+    .item input, .item select {
       width: 300px;
-      padding: 6px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      padding: 8px;
+      border: 2px solid #FFD700;
+      border-radius: 8px;
+      background-color: #fff;
+      color: #000;
+      font-size: 14px;
     }
-    .item button {
-      background-color: #dc3545;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      margin-left: 10px;
-      border-radius: 6px;
-      cursor: pointer;
+
+    .item input:focus, .item select:focus {
+      outline: none;
+      box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
     }
+
     .add-button {
       display: block;
-      margin: 10px auto;
-      background-color: #28a745;
-      color: white;
-      border: none;
-      padding: 8px 16px;
+      margin: 20px auto;
+      background-color: #000;
+      color: #FFD700;
+      border: 2px solid #FFD700;
+      padding: 10px 16px;
       font-size: 14px;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
     }
+
     .add-button:hover {
-      background-color: #218838;
+      background-color: #FFD700;
+      color: #000;
     }
+
     .buttons {
       text-align: center;
       margin-top: 40px;
     }
+
     .buttons button {
-      background-color: #007bff;
-      color: white;
+      background-color: #FFD700;
+      color: #000;
       border: none;
-      padding: 12px 24px;
+      padding: 14px 26px;
       margin: 10px;
       font-size: 16px;
-      border-radius: 6px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
+
     .buttons button:hover {
-      background-color: #0056b3;
+      background-color: #000;
+      color: #FFD700;
+      transform: scale(1.05);
     }
+
     #login {
       text-align: center;
       margin-top: 100px;
     }
+
     #login input {
       margin: 10px;
       padding: 10px;
       width: 250px;
       font-size: 16px;
+      border-radius: 6px;
+      border: 2px solid #FFD700;
     }
+
     #login button {
       padding: 10px 20px;
       font-size: 16px;
-      background-color: #007bff;
-      color: white;
+      background-color: #FFD700;
+      color: #000;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
     }
+
     #login button:hover {
-      background-color: #0056b3;
+      background-color: #000;
+      color: #FFD700;
     }
+
     #error {
       color: red;
       margin-top: 10px;
     }
+
     @keyframes fadeIn {
       0% { opacity: 0; transform: translateY(-20px); }
       100% { opacity: 1; transform: translateY(0); }
@@ -134,8 +180,9 @@
   </style>
 </head>
 <body>
+  <!-- LOGIN -->
   <div id="login" class="container">
-    <h1>🔐 Accesso Inventario Street Food</h1>
+    <h1>🔐 <span>Accesso</span> <span>Inventario</span></h1>
     <input type="text" id="username" placeholder="Nome utente">
     <br>
     <input type="password" id="password" placeholder="Password">
@@ -144,88 +191,147 @@
     <div id="error"></div>
   </div>
 
+  <!-- INVENTARIO -->
   <div id="inventario" class="container" style="display:none;">
-    <h1>
-      <span style="color:gold;">Billis</span>
-      <span style="color:black;">StreetFood</span>
-    </h1>
+    <h1><span>Billi’s</span> <span>StreetFood</span></h1>
+
+    <!-- LOGISTICA -->
     <h2>🚚 Logistica Evento <button onclick="toggleSection('logistica')">✖</button></h2>
     <div id="logistica">
-      <div class="item"><label>Targa veicolo:</label><input type="text" placeholder="Es. AB123CD"></div>
-      <div class="item"><label>Nome evento:</label><input type="text" placeholder="Es. Street Food Arezzo"></div>
-      <div class="item"><label>Orario di partenza:</label><input type="text" placeholder="Es. 08:00"></div>
-      <div class="item"><label>Orario di montaggio:</label><input type="text" placeholder="Es. 09:30"></div>
-      <div class="item"><label>Orario di chiusura:</label><input type="text" placeholder="Es. 23:00"></div>
-      <div class="item"><label>Alloggio dipendenti:</label><input type="text" placeholder="Es. Hotel Centrale"></div>
+      <div class="item"><label>🚗 Targa veicolo:</label><input type="text" placeholder="Es. AB123CD"></div>
+      <div class="item"><label>🎪 Nome evento:</label><input type="text" placeholder="Es. Street Food Arezzo"></div>
+      <div class="item"><label>📅 Giorno di partenza:</label><input type="date"></div>
+      <div class="item"><label>🕗 Orario di partenza:</label><input type="time"></div>
+      <div class="item"><label>🛠️ Orario di montaggio:</label><input type="time"></div>
+      <div class="item"><label>🌙 Orario di chiusura:</label><input type="time"></div>
+      <div class="item"><label>📆 Giorno di ritorno:</label><input type="date"></div>
+      <div class="item"><label>🏨 Alloggio dipendenti:</label><input type="text" placeholder="Es. Hotel Centrale"></div>
     </div>
 
+    <!-- SQUADRA EVENTO -->
+    <h2>👥 Squadra Evento <button onclick="toggleSection('squadra')">✖</button></h2>
+    <div id="squadra">
+      <div class="team-member">
+        <div class="item">
+          <label>👤 Nome membro:</label>
+          <input type="text" placeholder="Es. Mario Rossi">
+        </div>
+        <div class="item">
+          <label>🧢 Ruolo:</label>
+          <select>
+            <option value="">Seleziona ruolo</option>
+            <option>Griglia</option>
+            <option>Cassa</option>
+            <option>Assemblaggio</option>
+            <option>Altro</option>
+          </select>
+        </div>
+      </div>
+      <button class="add-button" onclick="addTeamMember()">➕ Aggiungi membro</button>
+    </div>
+
+    <!-- ALIMENTI -->
     <h2>🍽️ Alimenti <button onclick="toggleSection('alimenti')">✖</button></h2>
-    <div id="alimenti">
-      <div class="item"><label>Pane:</label><input type="text" placeholder="Es. 50 pezzi"></div>
-      <div class="item"><label>Carne:</label><input type="text" placeholder="Es. 10 kg"></div>
-      <div class="item"><label>Pulled Pork:</label><input type="text" placeholder="Es. 5 kg"></div>
-      <div class="item"><label>Cheddar:</label><input type="text" placeholder="Es. 2 kg"></div>
-      <div class="item"><label>Salsa Billi's:</label><input type="text" placeholder="Es. 3 bottiglie"></div>
-      <div class="item"><label>Salsa BBQ:</label><input type="text" placeholder="Es. 2 bottiglie"></div>
-      <div class="item"><label>Insalata:</label><input type="text" placeholder="Es. 3 cespi"></div>
-      <div class="item"><label>Pomodoro:</label><input type="text" placeholder="Es. 2 kg"></div>
-      <div class="item"><label>Cipolla Caramellata:</label><input type="text" placeholder="Es. 1 kg"></div>
-      <div class="item"><label>Maionese:</label><input type="text" placeholder="Es. 1 bottiglia"></div>
-      <div class="item"><label>Ketchup:</label><input type="text" placeholder="Es. 1 bottiglia"></div>
-      <div class="item"><label>Maionese Bustine:</label><input type="text" placeholder="Es. 100 bustine"></div>
-      <div class="item"><label>Ketchup Bustine:</label><input type="text" placeholder="Es. 100 bustine"></div>
-      <div class="item"><label>Hot Dog:</label><input type="text" placeholder="Es. 30 pezzi"></div>
-      <div class="item"><label>Würstel:</label><input type="text" placeholder="Es. 40 pezzi"></div>
-      <div class="item"><label>Patatine Fritte:</label><input type="text" placeholder="Es. 5 kg"></div>
-      <div class="item"><label>Olio di Girasole:</label><input type="text" placeholder="Es. 5 litri"></div>
-      <div class="item"><label>Bacon Cubetti:</label><input type="text" placeholder="Es. 2 kg"></div>
-      <button class="add-button" onclick="addItem('alimenti')">➕ Aggiungi alimento</button>
-    </div>
+  <div id="alimenti">
+  <div class="item"><label>🍞 Pane:</label><input type="text" placeholder="Es. 50 pezzi"></div>
+  <div class="item"><label>🍔 Hamburger:</label><input type="text" placeholder="Es. 20 pezzi"></div>
+  <div class="item"><label>🐖 Pulled Pork:</label><input type="text" placeholder="Es. 5 kg"></div>
+  <div class="item"><label>🧀 Cheddar:</label><input type="text" placeholder="Es. 2 kg"></div>
+  <div class="item"><label>🥗 Insalata:</label><input type="text" placeholder="Es. 3 cespi"></div>
+  <div class="item"><label>🍅 Pomodoro:</label><input type="text" placeholder="Es. 2 kg"></div>
+  <div class="item"><label>🥓 Bacon:</label><input type="text" placeholder="Es. 2 kg"></div>
+  <div class="item"><label>🧅 Cipolla Caramellata:</label><input type="text" placeholder="Es. 1 kg"></div>
+  <div class="item"><label>🌭 Pane Hotdog:</label><input type="text" placeholder="Es. 30 pezzi"></div>
+  <div class="item"><label>🌭 Würstel:</label><input type="text" placeholder="Es. 40 pezzi"></div>
+  <div class="item"><label>🥓 Bacon Cubetti:</label><input type="text" placeholder="Es. 2 kg"></div>
+  <div class="item"><label>🥫 Salsa Billi's:</label><input type="text" placeholder="Es. 3 bottiglie"></div>
+  <div class="item"><label>🍅 Ketchup:</label><input type="text" placeholder="Es. 1 bottiglia"></div>
+  <div class="item"><label>🥚 Maionese:</label><input type="text" placeholder="Es. 1 bottiglia"></div>
+  <div class="item"><label>🍅 Ketchup Bustine:</label><input type="text" placeholder="Es. 100 bustine"></div>
+  <div class="item"><label>🥚 Maionese Bustine:</label><input type="text" placeholder="Es. 100 bustine"></div>
+  <div class="item"><label>🥫 Salsa BBQ:</label><input type="text" placeholder="Es. 2 bottiglie"></div>
+  <div class="item"><label>🍟 Patatine Fritte:</label><input type="text" placeholder="Es. 5 kg"></div>
+  <button class="add-button" onclick="addItem('alimenti')">➕ Aggiungi alimento</button>
+  </div>
 
+
+    <!-- BEVANDE -->
     <h2>🥤 Bevande <button onclick="toggleSection('bevande')">✖</button></h2>
-    <div id="bevande">
-      <div class="item"><label>Coca Cola lt:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
-      <div class="item"><label>Fanta:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
-      <div class="item"><label>Acqua Naturale:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
-      <div class="item"><label>Acqua Frizzante:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
-      <div class="item"><label>Birra:</label><input type="text" placeholder="Es. 30 bottiglie"></div>
-      <div class="item"><label>The Limone:</label><input type="text" placeholder="Es. 12 bottiglie"></div>
-      <div class="item"><label>The Pesca:</label><input type="text" placeholder="Es. 12 bottiglie"></div>
-      <div class="item"><label>Sprite:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
-      <button class="add-button" onclick="addItem('bevande')">➕ Aggiungi bevanda</button>
-    </div>
+  <div id="bevande">
+  <div class="item"><label>🥤 Coca-Cola:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
+  <div class="item"><label>🥤 Coca-Cola 0:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
+  <div class="item"><label>🍊 Fanta:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
+  <div class="item"><label>💧 Acqua Naturale:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
+  <div class="item"><label>💧 Acqua Gassata:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
+  <div class="item"><label>🍺 Birra:</label><input type="text" placeholder="Es. 30 bottiglie"></div>
+  <div class="item"><label>🍋 The Limone:</label><input type="text" placeholder="Es. 12 bottiglie"></div>
+  <div class="item"><label>🍑 The Pesca:</label><input type="text" placeholder="Es. 12 bottiglie"></div>
+  <div class="item"><label>🥤 Sprite:</label><input type="text" placeholder="Es. 24 bottiglie"></div>
+  <button class="add-button" onclick="addItem('bevande')">➕ Aggiungi bevanda</button>
+  </div>
 
+
+    <!-- ATTREZZATURE -->
     <h2>🔧 Attrezzature <button onclick="toggleSection('attrezzature')">✖</button></h2>
-    <div id="attrezzature">
-      <div class="item"><label>Piastra Gas:</label><input type="text" placeholder="Es. 2 unità"></div>
-      <div class="item"><label>Piastra Elettrica:</label><input type="text" placeholder="Es. 1 unità"></div>
-      <div class="item"><label>Bombola Gas:</label><input type="text" placeholder="Es. 3 bombole"></div>
-      <div class="item"><label>Estintori:</label><input type="text" placeholder="Es. 1 unità"></div>
-      <div class="item"><label>Cavi Blu/Rossi:</label><input type="text" placeholder="Es. 5 cavi"></div>
-      <div class="item"><label>Prolunghe:</label><input type="text" placeholder="Es. 3 unità"></div>
-      <div class="item"><label>Paletta/Raschietto:</label><input type="text" placeholder="Es. 2 utensili"></div>
-      <div class="item"><label>Pinzette:</label><input type="text" placeholder="Es. 2 utensili"></div>
-      <div class="item"><label>Cestello Pane:</label><input type="text" placeholder="Es. 1 cestello"></div>
-      <button class="add-button" onclick="addItem('attrezzature')">➕ Aggiungi attrezzatura</button>
-    </div>
+  <div id="attrezzature">
+  <div class="item"><label>🛠️ Paletta:</label><input type="text" placeholder="Es. 2 unità"></div>
+  <div class="item"><label>🛠️ Raschietto:</label><input type="text" placeholder="Es. 2 unità"></div>
+  <div class="item"><label>🔪 Coltello Pane:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>🥘 Vaschette Alte:</label><input type="text" placeholder="Es. 5 unità"></div>
+  <div class="item"><label>🛢️ Tappi Vaschette Alte:</label><input type="text" placeholder="Es. 5 pezzi"></div>
+  <div class="item"><label>🥘 Vaschette Piccole:</label><input type="text" placeholder="Es. 10 unità"></div>
+  <div class="item"><label>🛢️ Tappi Vaschette Piccole:</label><input type="text" placeholder="Es. 10 pezzi"></div>
+  <div class="item"><label>🥄 Cucchiai:</label><input type="text" placeholder="Es. 20 pezzi"></div>
+  <div class="item"><label>🧻 Rotoloni Carta:</label><input type="text" placeholder="Es. 3 pezzi"></div>
+  <div class="item"><label>🥢 Stecchini Patatine:</label><input type="text" placeholder="Es. 100 pezzi"></div>
+  <div class="item"><label>🧻 Tovaglioli:</label><input type="text" placeholder="Es. 50 pezzi"></div>
+  <div class="item"><label>🔥 Riscalda Patate:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>📄 Carta Panini:</label><input type="text" placeholder="Es. 5 rotoli"></div>
+  <div class="item"><label>🧤 Guanti:</label><input type="text" placeholder="Es. 20 paia"></div>
+  <div class="item"><label>🍼 Biberon:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>🥫 Dispenser Ketchup:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>🥫 Dispenser Maionese:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>🗑️ Sacchi Neri:</label><input type="text" placeholder="Es. 10 pezzi"></div>
+  <div class="item"><label>🧹 Scopa:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>🛠️ Paletta:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>🗑️ Bidone Spazzatura:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>🛢️ Bidone Olio:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>🛒 Carrello Panini:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <button class="add-button" onclick="addItem('attrezzature')">➕ Aggiungi attrezzatura</button>
+  </div>
+  
+  <!-- Elettricità -->
+<h2>⚡ Elettricità <button onclick="toggleSection('elettricita')">✖</button></h2>
+<div id="elettricita">
+  <div class="item"><label>🔌 Cavo Furgone Blu:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>⚡ Quadro Elettrico 32A:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>🔌 Prolunga 16A 1 x Friggitrice:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>🔌 Prolunghe Varie:</label><input type="text" placeholder="Es. 3 unità"></div>
+  <div class="item"><label>💡 Luci per Grafiche o Pannelli:</label><input type="text" placeholder="Es. 5 unità"></div>
+  <div class="item"><label>⚡ Quadro Grande 64A:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>⛺ Gazebo:</label><input type="text" placeholder="Es. 1 unità"></div>
+  <div class="item"><label>💡 Luci Gazebo:</label><input type="text" placeholder="Es. 10 unità"></div>
+  <button class="add-button" onclick="addItem('elettricita')">➕ Aggiungi voce elettricità</button>
+</div>
 
+    <!-- BOTTONI FINALI -->
     <div class="buttons">
       <button onclick="sendEmail()">📤 Invia Email</button>
       <button onclick="exportData()">📁 Esporta PDF</button>
     </div>
   </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     function checkLogin() {
       const username = document.getElementById("username").value.trim();
       const password = document.getElementById("password").value.trim();
       const error = document.getElementById("error");
-
       if (username === "billisarezzo" && password === "billisarezzo@2025") {
         document.getElementById("login").style.display = "none";
         document.getElementById("inventario").style.display = "block";
       } else {
-        error.textContent = "Credenziali non valide. Riprova.";
+        error.textContent = "❌ Credenziali non valide. Riprova.";
       }
     }
 
@@ -234,13 +340,13 @@
       const newItem = document.createElement("div");
       newItem.className = "item";
       newItem.innerHTML = `
-        <label>Nuova voce:</label>
+        <label>🆕 Nuova voce:</label>
         <input type="text" placeholder="Nome">
         <input type="text" placeholder="Quantità">
         <button onclick="this.parentElement.remove()" style="
-          background-color: #dc3545;
-          color: white;
-          border: none;
+          background-color: #000;
+          color: #FFD700;
+          border: 2px solid #FFD700;
           padding: 6px 12px;
           margin-left: 10px;
           border-radius: 6px;
@@ -250,13 +356,37 @@
       container.insertBefore(newItem, container.querySelector(".add-button"));
     }
 
+    function addTeamMember() {
+      const squadra = document.getElementById("squadra");
+      const newMember = document.createElement("div");
+      newMember.className = "team-member";
+      newMember.innerHTML = `
+        <div class="item">
+          <label>👤 Nome membro:</label>
+          <input type="text" placeholder="Es. Nuovo membro">
+        </div>
+        <div class="item">
+          <label>🧢 Ruolo:</label>
+          <select>
+            <option value="">Seleziona ruolo</option>
+            <option>Griglia</option>
+            <option>Cassa</option>
+            <option>Assemblaggio</option>
+            <option>Altro</option>
+          </select>
+        </div>
+        <button onclick="this.parentElement.remove()" class="add-button" style="background-color:#000;color:#FFD700;border:2px solid #FFD700;">➖ Rimuovi membro</button>
+      `;
+      squadra.appendChild(newMember); // aggiunge sempre in fondo
+    }
+
     function toggleSection(id) {
       const section = document.getElementById(id);
       section.style.display = section.style.display === "none" ? "block" : "none";
     }
 
     function sendEmail() {
-      alert("Email inviata al destinatario!");
+      alert("📤 Email inviata al destinatario!");
       exportData();
     }
 
@@ -264,7 +394,6 @@
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
       let y = 20;
-
       doc.setFontSize(16);
       doc.text("Inventario Evento Street Food", 20, y);
       y += 10;
@@ -275,25 +404,22 @@
         doc.setFontSize(14);
         doc.text(title, 20, y);
         y += 8;
-
         const container = section.nextElementSibling;
         const items = container.querySelectorAll(".item");
         items.forEach(item => {
           const label = item.querySelector("label");
-          const inputs = item.querySelectorAll("input");
-          if (label && inputs.length > 0) {
-            const values = Array.from(inputs).map(input => input.value.trim()).filter(v => v !== "");
-            if (values.length > 0) {
+          const inputs = item.querySelectorAll("input, select");
+          if(label && inputs.length>0){
+            const values = Array.from(inputs).map(input=>input.value.trim()).filter(v=>v!=="");
+            if(values.length>0){
               doc.setFontSize(12);
               doc.text(`${label.textContent} ${values.join(" - ")}`, 25, y);
-              y += 6;
+              y+=6;
             }
           }
         });
-
-        y += 6;
+        y+=6;
       });
-
       doc.save("Inventario_StreetFood.pdf");
     }
   </script>
